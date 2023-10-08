@@ -31,8 +31,8 @@ EXPOSE 1212/udp
 EXPOSE 5000/tcp
 EXPOSE 5000/udp
 
-# Set volume for instances
-VOLUME [ "/ss14/instances" ]
+# Set volume
+VOLUME [ "/ss14" ]
 
 # Add configurations
 ADD appsettings.yml /ss14/appsettings.yml
