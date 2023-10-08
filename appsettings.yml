@@ -1,0 +1,51 @@
+Logging:
+  LogLevel:
+    Default: "Information"
+    Microsoft: "Warning"
+    Microsoft.Hosting.Lifetime: "Information"
+    SS14: "Debug"
+
+Serilog:
+  Using: [ "Serilog.Sinks.Console" ]
+  MinimumLevel:
+    Default: Information
+    Override:
+      SS14: Information
+      Microsoft: "Warning"
+      Microsoft.Hosting.Lifetime: "Information"
+      Microsoft.AspNetCore: Warning
+
+  WriteTo:
+    - Name: Console
+      Args:
+        OutputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3} {SourceContext}] {Message:lj}{NewLine}{Exception}"
+
+  Enrich: [ "FromLogContext" ]
+
+AllowedHosts: "*"
+
+# API URL your watchdog is accessible from.
+# This NEEDS to be reachable by the watchdog.
+# If you don't want the watchdog to be public,
+# do `http://localhost:5000/` here.
+#BaseUrl: https://your.domain.com/watchdog/
+BaseUrl: http://localhost:5000/
+
+Servers:
+  Instances:
+    # ID (and directory) of your server.
+    test:
+      # Name of the server
+      Name: "Test Instance"
+      # Token to control the instance remotely
+      ApiToken: "foobar"
+      # Port OF THE GAME SERVER.
+      # This should match the HTTP status API
+      # or watchdog can't contact the server.
+      ApiPort: 1212
+
+      # Auto update configuration. This can be
+      # omitted to skip auto updates.
+      UpdateType: "Manifest"
+      Updates:
+        ManifestUrl: "https://central.spacestation14.io/builds/wizards/manifest.json"
