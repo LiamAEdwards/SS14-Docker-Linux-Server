@@ -23,17 +23,11 @@ This project is for those who prefer containerized solutions, making server depl
     git clone https://github.com/LiamAEdwards/SS14-Docker-Linux-Server.git && cd SS14-Docker-Linux-Server
     ```
 
-2. **Build the Docker image**
-
-    ```bash
-    docker build -t ss14-linux-server . --no-cache
-    ```
-
-3. **Configure Your Server**
+2. **Configure Your Server**
 
     Edit the `appsettings.yml` & `server_config.toml` to match your desired configuration.
 
-4. **Run the Server**
+3. **Run the Server**
 
     ```bash
     docker run -d \
@@ -42,7 +36,7 @@ This project is for those who prefer containerized solutions, making server depl
       -p 5000:5000/tcp \
       -p 5000:5000/udp \
       -v /path/on/host:/ss14 \
-      ss14-server
+      ghcr.io/liamaedwards/ss14-docker-linux-server:main
     ```
 
 ---
