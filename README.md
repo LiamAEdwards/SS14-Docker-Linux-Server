@@ -1,32 +1,49 @@
-# SS14-Docker-Linux-Server
+<h1 align="center">SS14-Docker-Linux-Server 🚀</h1>
 
-Containerised server deployment for 
-
-https://spacestation14.io/
-
-Based on the documentation 
-
-https://docs.spacestation14.com/en/general-development/setup/server-hosting-tutorial.html
+<p align="center">
+  Containerized deployment of the <a href="https://spacestation14.io/">Space Station 14</a> server on Linux.
+</p>
 
 
-Made for those who prefer to containerise things.
+---
 
-## Build
-  `git clone https://github.com/LiamAEdwards/SS14-Docker-Linux-Server.git && cd SS14-Docker-Linux-Server`
-  
-  `docker build -t ss14-linux-server . --no-cache`
+⚠️ **DISCLAIMER**: This Docker deployment is currently in its early stages and **has not been thoroughly tested**.
 
+---
 
-## Run
-Edit the `appsettings.yml` & `server_config.toml` to add your configuration
+### 📖 Overview
 
-```
-docker run -d \
-  -p 1212:1212/tcp \
-  -p 1212:1212/udp \
-  -p 5000:5000/tcp \
-  -p 5000:5000/udp \
-  -v /path/on/host:/ss14 \
-  ss14-server
-```
+This project is for those who prefer containerized solutions, making server deployment and management a breeze. It's based on the [official documentation](https://docs.spacestation14.com/en/general-development/setup/server-hosting-tutorial.html) but wrapped up in a Docker container for convenience.
+
+### 🚀 Quick Start
+
+1. **Clone the repository**
+
+    ```bash
+    git clone https://github.com/LiamAEdwards/SS14-Docker-Linux-Server.git && cd SS14-Docker-Linux-Server
+    ```
+
+2. **Build the Docker image**
+
+    ```bash
+    docker build -t ss14-linux-server . --no-cache
+    ```
+
+3. **Configure Your Server**
+
+    Edit the `appsettings.yml` & `server_config.toml` to match your desired configuration.
+
+4. **Run the Server**
+
+    ```bash
+    docker run -d \
+      -p 1212:1212/tcp \
+      -p 1212:1212/udp \
+      -p 5000:5000/tcp \
+      -p 5000:5000/udp \
+      -v /path/on/host:/ss14 \
+      ss14-server
+    ```
+
+---
 
