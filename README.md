@@ -4,12 +4,19 @@
   Containerized deployment of the <a href="https://spacestation14.io/">Space Station 14</a> server on Linux.
 </p>
 
+<div align="center">
+
+[![Create and publish a Docker image](https://github.com/LiamAEdwards/SS14-Docker-Linux-Server/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/LiamAEdwards/SS14-Docker-Linux-Server/actions/workflows/main.yml)
+
+</div>
 
 ---
 
 ⚠️ **DISCLAIMER**: This Docker deployment is currently in its early stages and **has not been thoroughly tested**.
 
 ---
+
+
 
 ### 📖 Overview
 
