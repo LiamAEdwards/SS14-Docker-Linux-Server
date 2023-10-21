@@ -17,7 +17,7 @@ RUN wget https://github.com/space-wizards/SS14.Watchdog/archive/d0a68202284e837e
     cp -r SS14.Watchdog/bin/Release/net7.0/linux-x64/publish /ss14-default
 
 # Server stage
-FROM mcr.microsoft.com/dotnet/runtime:7.0 AS server
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS server
 
 # Copy from the build stage
 COPY --from=build /ss14-default /ss14-default
@@ -35,8 +35,8 @@ EXPOSE 5000/udp
 VOLUME [ "/ss14" ]
 
 # Add configurations
-ADD appsettings.yml /ss14-default/appsettings.yml
-ADD server_config.toml /ss14-default/server_config.toml
+ADD appsettings.yml /ss14-default/publish/appsettings.yml
+ADD server_config.toml /ss14-default/publish/server_config.toml
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh

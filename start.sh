@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Check if directory is empty
 if [ ! "$(ls -A /ss14)" ]; then
@@ -7,5 +7,6 @@ if [ ! "$(ls -A /ss14)" ]; then
 fi
 
 # Start the original command
-exec /ss14/Robust.Server "$@"
+cd ss14/publish/
+./SS14.Watchdog "$@"
 
