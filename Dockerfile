@@ -1,5 +1,5 @@
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 
 # Update and install necessary tools
 RUN apt-get -y update && \
@@ -17,7 +17,7 @@ RUN wget https://github.com/space-wizards/SS14.Watchdog/archive/d0a68202284e837e
     cp -r SS14.Watchdog/bin/Release/net7.0/linux-x64/publish /ss14-default
 
 # Server stage
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS server
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS server
 
 # Copy from the build stage
 COPY --from=build /ss14-default /ss14-default
