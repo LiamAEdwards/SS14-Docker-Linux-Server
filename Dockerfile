@@ -1,23 +1,23 @@
 # Build stage
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Update and install necessary tools
 RUN apt-get -y update && \
     apt-get -y install curl unzip wget git
 
 # Download and extract SS14 server
-ADD https://cdn.centcomm.spacestation14.com/builds/wizards/builds/70246ae10eff287ca83193cce73b79e7424c7e4a/SS14.Server_linux-x64.zip SS14.Server_linux-x64.zip
+ADD https://wizards.cdn.spacestation14.com/fork/wizards/version/c50d610771a5674469aef9c4628b10f08a8c74ae/file/SS14.Server_linux-x64.zip SS14.Server_linux-x64.zip
 RUN unzip SS14.Server_linux-x64.zip -d /ss14-default/
 
 # Download and build Watchdog
-RUN wget https://github.com/space-wizards/SS14.Watchdog/archive/d0a68202284e837e987d38b3e99f15a6a53f2a0b.zip -O Watchdog.zip && \
+RUN wget https://github.com/space-wizards/SS14.Watchdog/archive/refs/heads/master.zip -O Watchdog.zip && \
     unzip Watchdog.zip -d Watchdog && \
     cd Watchdog/SS14* && \
     dotnet publish -c Release -r linux-x64 --no-self-contained && \
-    cp -r SS14.Watchdog/bin/Release/net7.0/linux-x64/publish /ss14-default
+    cp -r SS14.Watchdog/bin/Release/net9.0/linux-x64/publish /ss14-default
 
 # Server stage
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS server
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS server
 
 # Copy from the build stage
 COPY --from=build /ss14-default /ss14-default
