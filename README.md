@@ -10,17 +10,12 @@
 
 </div>
 
----
 
-⚠️ **DISCLAIMER**: This Docker deployment is currently in its early stages and **has not been thoroughly tested**.
+### Overview
 
----
+This project is for those who prefer containerized solutions. It's based on the [official documentation](https://docs.spacestation14.com/en/general-development/setup/server-hosting-tutorial.html) but wrapped up in a Docker container for convenience.
 
-### 📖 Overview
-
-This project is for those who prefer containerized solutions, making server deployment and management a breeze. It's based on the [official documentation](https://docs.spacestation14.com/en/general-development/setup/server-hosting-tutorial.html) but wrapped up in a Docker container for convenience.
-
-### 🚀 Quick Start
+### Quick Start
 
 1. **Clone the repository**
 
