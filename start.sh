@@ -7,6 +7,6 @@ if [ ! "$(ls -A /ss14)" ]; then
 fi
 
 # Start the original command
-cd ss14/publish/
+cd /ss14/publish/
 ./SS14.Watchdog "$@"
 

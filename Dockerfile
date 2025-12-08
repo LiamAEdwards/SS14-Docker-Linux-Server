@@ -3,11 +3,15 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Update and install necessary tools
 RUN apt-get -y update && \
-    apt-get -y install curl unzip wget git
+    apt-get -y install curl unzip wget git jq
 
-# Download and extract SS14 server
-ADD https://wizards.cdn.spacestation14.com/fork/wizards/version/c50d610771a5674469aef9c4628b10f08a8c74ae/file/SS14.Server_linux-x64.zip SS14.Server_linux-x64.zip
-RUN unzip SS14.Server_linux-x64.zip -d /ss14-default/
+# Download and extract SS14 server (latest version compatible with .NET 9)
+# Using manifest to get current server build
+RUN SERVER_URL=$(curl -sL https://central.spacestation14.io/builds/wizards/manifest.json | \
+    jq -r '.builds | to_entries | sort_by(.value.time) | last | .value.server."linux-x64".url') && \
+    echo "Downloading server from: $SERVER_URL" && \
+    wget -O SS14.Server_linux-x64.zip "$SERVER_URL" && \
+    unzip SS14.Server_linux-x64.zip -d /ss14-default/
 
 # Download and build Watchdog
 RUN wget https://github.com/space-wizards/SS14.Watchdog/archive/refs/heads/master.zip -O Watchdog.zip && \
@@ -28,8 +32,7 @@ RUN apt-get -y update && apt-get -y install unzip
 # Expose necessary ports
 EXPOSE 1212/tcp
 EXPOSE 1212/udp
-EXPOSE 5000/tcp
-EXPOSE 5000/udp
+EXPOSE 8080/tcp
 
 # Set volume
 VOLUME [ "/ss14" ]

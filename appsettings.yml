@@ -24,12 +24,16 @@ Serilog:
 
 AllowedHosts: "*"
 
+# Force Kestrel to bind to 0.0.0.0 (IPv4) instead of [::] (IPv6)
+# This fixes the Host header issue with http://[::]:8080
+Urls: "http://0.0.0.0:8080"
+
 # API URL your watchdog is accessible from.
-# This NEEDS to be reachable by the watchdog.
+# This NEEDS to be reachable by the game server.
 # If you don't want the watchdog to be public,
-# do `http://localhost:5000/` here.
+# do `http://localhost:8080/` here.
 #BaseUrl: https://your.domain.com/watchdog/
-BaseUrl: http://localhost:5000/
+BaseUrl: http://localhost:8080/
 
 Servers:
   Instances:
@@ -43,6 +47,10 @@ Servers:
       # This should match the HTTP status API
       # or watchdog can't contact the server.
       ApiPort: 1212
+
+      # Override the baseUrl to use localhost instead of [::]
+      EnvironmentVariables:
+        ROBUST_CVAR_watchdog__baseUrl: "http://localhost:8080/"
 
       # Auto update configuration. This can be
       # omitted to skip auto updates.

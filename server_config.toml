@@ -24,12 +24,20 @@ enabled = true
 
 # This is the address and port the status server binds to.
 # The port is by default set based on net.port so it will follow what you set there.
-# bind = "*:1212"
+bind = "*:1212"
 
 # This is the address of the SS14 server as the launcher uses it.
 # This is only needed if you're proxying the status HTTP server -
 #  by default the launcher will assume the address and port match that of the status server.
 # connectaddress = "udp://localhost:1212"
+
+[watchdog]
+# Token must match ApiToken in appsettings.yml
+token = "foobar"
+# Key must match the instance key in appsettings.yml (e.g., "test")
+key = "test"
+# BaseUrl must match BaseUrl in appsettings.yml
+baseUrl = "http://localhost:8080/"
 
 [game]
 hostname = "MyServer"
