@@ -1,4 +1,4 @@
-<h1 align="center">SS14-Docker-Linux-Server 🚀</h1>
+<h1 align="center">SS14-Docker-Linux-Server </h1>
 
 <p align="center">
   Containerized deployment of the <a href="https://spacestation14.io/">Space Station 14</a> server on Linux.
